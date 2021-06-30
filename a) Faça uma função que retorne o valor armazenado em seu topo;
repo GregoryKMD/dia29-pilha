@@ -1,0 +1,57 @@
+public class Main {
+  private No base;
+  private No topo;
+  private String nomeDaPilha;
+  //Construtor da classe Pilha
+  public Main(String nome) {
+    nomeDaPilha = nome;
+    //Como a pilha inicialmente é vazia
+    // receberão o valor nulo.
+    base = topo = null;
+
+  }
+  public Main() {
+    nomeDaPilha = "Pilha Teste";
+    base = topo = null;
+
+  }
+  public void Empilha(String item) {
+    if (Vazia())
+    base = topo = new No(item);
+    else {
+      topo.setProx(new No(item));
+      topo = topo.getProx();
+
+    }
+  }
+  public String Desempilha() {
+      if (Vazia()) {
+      return null;
+    }
+    String item = topo.getDado();
+    if (base == topo)
+    base = topo = null;
+    else {
+      No atual = base;
+      while (atual.getProx() != topo)
+      atual = atual.getProx();
+      topo = atual;
+      atual.setProx(null);
+    }
+    return item;
+  }
+  public boolean Vazia() {
+    return base == null;
+  }
+  public String retornaTopo(){
+    return topo.getDado();
+  }
+  public static void main(String[] args) {
+    Main p1 = new Main();
+    p1.Empilha("1 Mercado financeiro\n");
+    p1.Empilha("2 Mercado de ações\n");
+    p1.Empilha("3 Day Trade\n"); 
+    p1.Empilha("4 Swing Trade\n");
+    System.out.println(p1.retornaTopo()); 
+  }
+}
