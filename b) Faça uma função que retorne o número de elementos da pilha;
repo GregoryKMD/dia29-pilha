@@ -1,0 +1,76 @@
+public class Main {
+
+ static int cont = 0;
+
+ private No base;
+ private No topo;
+ private String NomeDaPilha;
+
+ public Main(String nome){
+   NomeDaPilha = nome;
+   base = topo = null;
+
+ }
+
+ public Main(){
+   NomeDaPilha = "Pilha teste";
+   base = topo = null;
+
+ }
+
+ public void Empilhar(String item){
+
+   cont = cont + 1;
+   if (Vazia())
+     base = topo = new No(item);
+   else {
+     topo.setProx(new No(item));
+     topo = topo.getProx();
+
+   }
+ }
+
+ public String Desempilha(){
+
+   cont = cont - 1;
+   if (Vazia()){
+     return null;
+
+   }
+   String item = topo.getDado();
+   if (base == topo)
+     base = topo = null;
+   else {
+     No atual = base;
+     while (atual.getProx() != topo)
+       atual = atual.getProx();
+       topo = atual;
+       atual.setProx(null);
+
+     }
+   return item;
+ }
+
+ public boolean Vazia(){
+    return base == null;
+ }
+
+ public String Topo(){
+   return topo.getDado();
+ }
+
+ public int Elementos(int cont){
+
+   return cont;
+ }
+ public static void main(String[] args) {
+   Main p1 = new Main();
+   p1.Empilhar("primeirin elemento");
+   p1.Empilhar("elemento segundo");
+   p1.Empilhar("os elementos do terceirão");
+   p1.Empilhar("o quarteto de elemento");
+
+   p1.Elementos(cont);
+   System.out.println("elementos: "+p1.Elementos(cont));
+  }
+}
